@@ -1,4 +1,4 @@
-import AppWrapper from './AppWrapper';
+import HomePage from './HomePage/HomePage';
 import LoginPage from './LoginPage/LoginPage';
 
-export {LoginPage, AppWrapper};
+export {LoginPage, HomePage};

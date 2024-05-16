@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5% 2% 5% 2%;
+  gap: 40px;
+  margin-top: 80px;
+}
+
+.container img {
+  width: 200px;
+  height: 100%;
+}
+
+.buttonStyle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #c00518;
+  color: #fff;
+  border: none;
+  gap: 5px;
+  padding: 20px;
+}
+
+.inputStyle {
+  border: 2px solid #c00518;
+  width: 67%;
+  padding: 10px 10px;
+}

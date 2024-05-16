@@ -2,16 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { RouterProvider } from 'react-router-dom';
-import { router } from './routes/app-routes';
+import {RouterProvider} from 'react-router-dom';
+import {router} from './routes/app-routes';
+import {Provider as StoreProvider} from 'react-redux';
+import Store from '../src/store/store';
+import {ConfigProvider} from 'antd';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root') as HTMLElement,
 );
 root.render(
   <React.StrictMode>
-      <RouterProvider router={router} />
-  </React.StrictMode>
+    <StoreProvider store={Store}>
+      <ConfigProvider
+        theme={{
+          token: {
+            // Seed Token
+            colorPrimary: '#c00518',
+          },
+        }}>
+        <RouterProvider router={router} />
+      </ConfigProvider>
+    </StoreProvider>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

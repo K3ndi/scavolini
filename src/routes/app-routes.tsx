@@ -1,17 +1,22 @@
 import {createBrowserRouter} from 'react-router-dom';
-import App from '../App';
-import {LoginPage} from '../pages';
+import {HomePage, LoginPage} from '../pages';
+import {ErrorPage, Layout} from '../components';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <App />,
-    // loader: rootLoader,
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-    // loader: teamLoader,
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+
+    children: [
+      {
+        path: '/',
+        element: <LoginPage />,
+      },
+      {
+        path: '/programmi',
+        element: <HomePage />,
+      },
+    ],
   },
 ]);
 
