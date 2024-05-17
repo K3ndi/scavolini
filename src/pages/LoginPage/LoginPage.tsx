@@ -144,26 +144,22 @@ const LoginPage = () => {
   const fetchAziendaData = async (companyCode: '10' | '30' | null) => {
     try {
       setLoading(true);
-      dispatch(updateUserInfo(DUMMY_DATA as CompanyLoginResponseType));
-      setUserInfo(DUMMY_DATA as CompanyLoginResponseType);
-      setLoading(false);
-      toggleSelectCompanyModal();
 
-      // fetch(
-      //   `${AziendaLoginEndPoint}?matricola=${matricolaInput}&azienda=${companyCode}`,
-      // )
-      //   .then(res => res.json())
-      //   .then(data => {
-      //     dispatch(updateUserInfo(data as CompanyLoginResponseType));
-      //     setUserInfo(data as CompanyLoginResponseType);
-      //     setLoading(false);
-      //     toggleSelectCompanyModal();
-      //   })
-      //   .catch(error => {
-      //     messageApi.info('Errore durante il recupero dei dati');
-      //     setLoading(false);
-      //     toggleSelectCompanyModal();
-      //   });
+      fetch(
+        `${AziendaLoginEndPoint}?matricola=${matricolaInput}&azienda=${companyCode}`,
+      )
+        .then(res => res.json())
+        .then(data => {
+          dispatch(updateUserInfo(data as CompanyLoginResponseType));
+          setUserInfo(data as CompanyLoginResponseType);
+          setLoading(false);
+          toggleSelectCompanyModal();
+        })
+        .catch(error => {
+          messageApi.info('Errore durante il recupero dei dati');
+          setLoading(false);
+          toggleSelectCompanyModal();
+        });
     } catch (error) {
       messageApi.info('Errore durante il recupero dei dati');
       setLoading(false);
