@@ -21,13 +21,13 @@ import {
 } from '../../store/logic-slice/logic.slice';
 import {useState} from 'react';
 
-import {companyLogin} from '../../settings/controllers/app-controllers';
 import {CompanyLoginResponseType} from '../../settings/controllers/types';
 import {useNavigate} from 'react-router-dom';
 import {
   deleteUserInfo,
   setUserInfo,
 } from '../../settings/app-service/app-storage-service';
+import {AziendaLoginEndPoint} from '../../settings/api-endpoint-service';
 
 const DUMMY_DATA = {
   data: {
@@ -112,6 +112,7 @@ const DUMMY_DATA = {
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
+
   /**here we get the userinfo */
   const userInfo = useAppSelector(selectUserInfo);
   const navigate = useNavigate();
@@ -143,15 +144,26 @@ const LoginPage = () => {
   const fetchAziendaData = async (companyCode: '10' | '30' | null) => {
     try {
       setLoading(true);
-
-      // const loginData = await companyLogin(companyCode, matricolaInput);
-      // if (!loginData.success) {
-      //   throw new Error();
-      // }
       dispatch(updateUserInfo(DUMMY_DATA as CompanyLoginResponseType));
       setUserInfo(DUMMY_DATA as CompanyLoginResponseType);
       setLoading(false);
       toggleSelectCompanyModal();
+
+      // fetch(
+      //   `${AziendaLoginEndPoint}?matricola=${matricolaInput}&azienda=${companyCode}`,
+      // )
+      //   .then(res => res.json())
+      //   .then(data => {
+      //     dispatch(updateUserInfo(data as CompanyLoginResponseType));
+      //     setUserInfo(data as CompanyLoginResponseType);
+      //     setLoading(false);
+      //     toggleSelectCompanyModal();
+      //   })
+      //   .catch(error => {
+      //     messageApi.info('Errore durante il recupero dei dati');
+      //     setLoading(false);
+      //     toggleSelectCompanyModal();
+      //   });
     } catch (error) {
       messageApi.info('Errore durante il recupero dei dati');
       setLoading(false);

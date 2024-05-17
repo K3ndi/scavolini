@@ -10,58 +10,6 @@ import {
 import {CompanyProgrammiType} from '../../settings/controllers/types';
 import {List} from 'antd';
 
-const DUMMY_DATA = [
-  {
-    codice: 'CTL-ACC-01     ',
-    immagine: '/Immagini/Programmi/accettazionemerce.png',
-    nomeBreve: 'Accett. Merce Lacc.',
-    isMenuSap: false,
-    id: 'AccMerce',
-  },
-  {
-    codice: 'UGU-PRE',
-    immagine: '/Immagini/Programmi/uguaglianza2d.png',
-    nomeBreve: 'Uguaglianza 2D',
-    isMenuSap: false,
-    id: 'Uguaglianza2D',
-  },
-  {
-    codice: 'CTL-SOR-01',
-    immagine: '/Immagini/Programmi/uguaglianza2d.png',
-    nomeBreve: 'Uguaglianza Srt',
-    isMenuSap: false,
-    id: 'UguaglianzaSorter',
-  },
-  {
-    codice: 'STM-ETK-02',
-    immagine: '/Immagini/Programmi/stampa.png',
-    nomeBreve: 'Genera Etichetta',
-    isMenuSap: false,
-    id: 'StampaEtichetteSped',
-  },
-  {
-    codice: 'MAN',
-    immagine: '/Immagini/Programmi/mancanti.png',
-    nomeBreve: 'Segn. Mancanti',
-    isMenuSap: false,
-    id: 'Mancanti',
-  },
-  {
-    codice: 'CTL-SMT-01',
-    immagine: '/Immagini/Programmi/prelievoante.png',
-    nomeBreve: 'Smistamento',
-    isMenuSap: false,
-    id: 'SmistLaccato',
-  },
-  {
-    codice: 'STM-ETK-05',
-    immagine: '/Immagini/Programmi/stampa.png',
-    nomeBreve: 'Stampa Etk Carrello',
-    isMenuSap: false,
-    id: 'StampaEtkCarrello',
-  },
-];
-
 export const HomePage = () => {
   const navigate = useNavigate();
 
@@ -74,12 +22,11 @@ export const HomePage = () => {
 
   const onProgramSelect = (item: CompanyProgrammiType) => () => {
     dispatch(updateSelectProgram(item));
-
-    // props.navigation.navigate(AppNavigatorRoots.Insert_Data);
+    navigate('/insertdata');
   };
 
   const renderItem = (item: CompanyProgrammiType) => {
-    return <ProgramItem item={item} />;
+    return <ProgramItem onProgramSelect={onProgramSelect} item={item} />;
   };
 
   return (
@@ -92,12 +39,16 @@ export const HomePage = () => {
         }
       />
 
-      <List
-        size="large"
-        style={{padding: '0 10px'}}
-        dataSource={DUMMY_DATA}
-        renderItem={renderItem}
-      />
+      {userInfo?.data?.programmi ? (
+        <List
+          size="large"
+          style={{padding: '0 10px'}}
+          dataSource={userInfo.data.programmi}
+          renderItem={renderItem}
+        />
+      ) : (
+        <h3 style={{marginTop: '30px'}}>Nessuna informazione</h3>
+      )}
     </>
   );
 };

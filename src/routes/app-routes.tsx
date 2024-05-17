@@ -1,5 +1,5 @@
 import {createBrowserRouter} from 'react-router-dom';
-import {HomePage, LoginPage} from '../pages';
+import {HomePage, InsertData, LoginPage} from '../pages';
 import {ErrorPage, Layout} from '../components';
 
 const router = createBrowserRouter([
@@ -15,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: '/programmi',
         element: <HomePage />,
+      },
+      {
+        path: '/insertdata',
+        element: <InsertData />,
       },
     ],
   },
