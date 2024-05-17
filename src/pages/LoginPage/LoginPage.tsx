@@ -1,4 +1,9 @@
-import {ChooseCompanyModal, Header, UserInfoModal} from '../../components';
+import {
+  ChooseCompanyModal,
+  Header,
+  UserInfoData,
+  UserInfoModal,
+} from '../../components';
 import {
   IconInfoCircle,
   IconUser,
@@ -18,11 +23,98 @@ import {useState} from 'react';
 
 import {companyLogin} from '../../settings/controllers/app-controllers';
 import {CompanyLoginResponseType} from '../../settings/controllers/types';
+import {useNavigate} from 'react-router-dom';
+import {
+  deleteUserInfo,
+  setUserInfo,
+} from '../../settings/app-service/app-storage-service';
+
+const DUMMY_DATA = {
+  data: {
+    programmi: [
+      {
+        codice: 'CTL-ACC-01     ',
+        immagine: '/Immagini/Programmi/accettazionemerce.png',
+        nomeBreve: 'Accett. Merce Lacc.',
+        isMenuSap: false,
+        id: 'AccMerce',
+      },
+      {
+        codice: 'UGU-PRE',
+        immagine: '/Immagini/Programmi/uguaglianza2d.png',
+        nomeBreve: 'Uguaglianza 2D',
+        isMenuSap: false,
+        id: 'Uguaglianza2D',
+      },
+      {
+        codice: 'CTL-SOR-01',
+        immagine: '/Immagini/Programmi/uguaglianza2d.png',
+        nomeBreve: 'Uguaglianza Srt',
+        isMenuSap: false,
+        id: 'UguaglianzaSorter',
+      },
+      {
+        codice: 'STM-ETK-02',
+        immagine: '/Immagini/Programmi/stampa.png',
+        nomeBreve: 'Genera Etichetta',
+        isMenuSap: false,
+        id: 'StampaEtichetteSped',
+      },
+      {
+        codice: 'MAN',
+        immagine: '/Immagini/Programmi/mancanti.png',
+        nomeBreve: 'Segn. Mancanti',
+        isMenuSap: false,
+        id: 'Mancanti',
+      },
+      {
+        codice: 'CTL-SMT-01',
+        immagine: '/Immagini/Programmi/prelievoante.png',
+        nomeBreve: 'Smistamento',
+        isMenuSap: false,
+        id: 'SmistLaccato',
+      },
+      {
+        codice: 'STM-ETK-05',
+        immagine: '/Immagini/Programmi/stampa.png',
+        nomeBreve: 'Stampa Etk Carrello',
+        isMenuSap: false,
+        id: 'StampaEtkCarrello',
+      },
+    ],
+    matricola: 920,
+    nomeCognome: 'ROBERTO GIANGOLINI',
+    isDimesso: false,
+    codiceReparto: '45',
+    nomeReparto: 'Magazzino e foratura ante',
+    divisione: '100',
+    azienda: '10',
+    isScavolini: true,
+    isErnestomeda: false,
+    isScavoliniBagni: false,
+    isLaccatoScavolini: false,
+    isRepartoImballoAnte: false,
+    isLaccatoErnestomeda: false,
+    isFuoriMisuraErnestomeda: false,
+    isScSpedizioniIta: false,
+    isScSpedizioniEst: false,
+    isRepartoTopMensole: false,
+    isSpedizioniScavolini: false,
+    isScCapoArea: false,
+    isEldomScavolini: false,
+    isMagRiordinatoreAnteScavolini: true,
+    isMagazzinoErnestomeda: false,
+    isFmLotto1Ernestomeda: false,
+    getInfoBase: 'ROBERTO GIANGOLINI (Magazzino e foratura ante 45)',
+  },
+  total: 1,
+};
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
   /**here we get the userinfo */
   const userInfo = useAppSelector(selectUserInfo);
+  const navigate = useNavigate();
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -30,7 +122,6 @@ const LoginPage = () => {
   const [matricolaInput, setMatricolaInput] = useState<string>(
     userInfo?.data?.matricola ? String(userInfo.data.matricola) : '',
   );
-  console.log('🚀 ~ LoginPage ~ matricolaInput:', matricolaInput);
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -53,31 +144,29 @@ const LoginPage = () => {
     try {
       setLoading(true);
 
-      const loginData = await companyLogin(companyCode, matricolaInput);
-      if (!loginData.success) {
-        throw new Error();
-      }
-      dispatch(updateUserInfo(loginData.result as CompanyLoginResponseType));
-      // setUserInfo(loginData.result as CompanyLoginResponseType);
+      // const loginData = await companyLogin(companyCode, matricolaInput);
+      // if (!loginData.success) {
+      //   throw new Error();
+      // }
+      dispatch(updateUserInfo(DUMMY_DATA as CompanyLoginResponseType));
+      setUserInfo(DUMMY_DATA as CompanyLoginResponseType);
       setLoading(false);
+      toggleSelectCompanyModal();
     } catch (error) {
-      // Toast.show({
-      //   type: 'error',
-      //   text2: 'Errore durante il recupero dei dati',
-      // });
+      messageApi.info('Errore durante il recupero dei dati');
       setLoading(false);
-      console.log(error);
+      toggleSelectCompanyModal();
     }
   };
 
   const selectCompany = (companyCode: '10' | '30' | null) => {
-    toggleSelectCompanyModal();
     fetchAziendaData(companyCode);
   };
 
   const changeCompany = () => {
     setMatricolaInput('');
     dispatch(updateUserInfo(null));
+    deleteUserInfo();
   };
 
   const onAccediPress = () => {
@@ -86,6 +175,10 @@ const LoginPage = () => {
     } else {
       messageApi.info('Scrivere la matricola');
     }
+  };
+
+  const navigateHome = () => {
+    navigate('programmi');
   };
 
   return (
@@ -127,19 +220,29 @@ const LoginPage = () => {
           </Button>
         </Flex>
 
+        {userInfo ? (
+          <UserInfoData
+            fullName={userInfo?.data?.nomeCognome}
+            repartName={userInfo?.data?.nomeReparto}
+            navigateHome={navigateHome}
+          />
+        ) : null}
+
         {userInfoModal ? (
           <UserInfoModal
             onCancel={toggleUserInfo}
             onOk={toggleUserInfo}
             open={userInfoModal}
+            userInfo={userInfo}
           />
         ) : null}
 
         {selectCompanyModal ? (
           <ChooseCompanyModal
+            loading={loading}
             open={selectCompanyModal}
             onCancel={toggleSelectCompanyModal}
-            onOk={() => console.log('dsfdf')}
+            onOk={selectCompany}
           />
         ) : null}
       </section>

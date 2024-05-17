@@ -1,6 +1,10 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../store';
-import { CompanyLoginResponseType, CompanyProgrammiType, SupplierResponseType } from '../../settings/controllers/types';
+import {
+  CompanyLoginResponseType,
+  CompanyProgrammiType,
+  SupplierResponseType,
+} from '../../settings/controllers/types';
 
 type InsterDataType = {
   supplier: string | null;
@@ -51,6 +55,7 @@ const initialState: LogicSlice = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-redeclare
 export const LogicSlice = createSlice({
   name: 'LogicSlice',
   initialState,
