@@ -60,22 +60,22 @@ export const InsertData = () => {
       setLoading(true);
 
       const params = {
-        matricola: userInfo?.data?.matricola ? userInfo.data.matricola : null,
-        azienda: userInfo?.data?.azienda ? userInfo.data.azienda : null,
+        matricola: userInfo?.data?.matricola ? userInfo.data.matricola : '',
+        azienda: userInfo?.data?.azienda ? userInfo.data.azienda : '',
         codiceReparto: userInfo?.data?.codiceReparto
           ? userInfo.data.codiceReparto
-          : null,
+          : '',
         nomeTerminale: 'Test',
-        divisione: userInfo?.data?.divisione ? userInfo.data.divisione : null,
+        divisione: userInfo?.data?.divisione ? userInfo.data.divisione : '',
         isScavolini: userInfo?.data?.isScavolini
           ? userInfo.data.isScavolini
-          : null,
+          : false,
         isErnestomeda: userInfo?.data?.isErnestomeda
           ? userInfo.data.isErnestomeda
-          : null,
+          : false,
         isScavoliniBagni: userInfo?.data?.isScavoliniBagni
           ? userInfo.data.isScavoliniBagni
-          : null,
+          : false,
         sorter_IsInBaia01: false,
       };
 
