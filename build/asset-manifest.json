@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.3fa951fa.css",
-    "main.js": "/static/js/main.a5e4fad9.js",
+    "main.css": "/static/css/main.1b6b39b6.css",
+    "main.js": "/static/js/main.608ed5de.js",
     "static/js/453.3e42a52b.chunk.js": "/static/js/453.3e42a52b.chunk.js",
     "static/media/Scavolini.jpg": "/static/media/Scavolini.6997548b690bfc7eac5a.jpg",
     "index.html": "/index.html",
-    "main.3fa951fa.css.map": "/static/css/main.3fa951fa.css.map",
-    "main.a5e4fad9.js.map": "/static/js/main.a5e4fad9.js.map",
+    "main.1b6b39b6.css.map": "/static/css/main.1b6b39b6.css.map",
+    "main.608ed5de.js.map": "/static/js/main.608ed5de.js.map",
     "453.3e42a52b.chunk.js.map": "/static/js/453.3e42a52b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3fa951fa.css",
-    "static/js/main.a5e4fad9.js"
+    "static/css/main.1b6b39b6.css",
+    "static/js/main.608ed5de.js"
   ]
 }
