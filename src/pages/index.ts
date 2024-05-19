@@ -1,5 +1,13 @@
+import AccettazioneLaccatoPage from './AccettazioneLaccatoPage/AccettazioneLaccatoPage';
 import HomePage from './HomePage/HomePage';
-import InsertData from './InsertDataPage/InsertData';
+import InsertDataPage from './InsertDataPage/InsertDataPage';
 import LoginPage from './LoginPage/LoginPage';
+import RistampaETKPage from './RistampaETKPage/RistampaETKPage';
 
-export {LoginPage, HomePage, InsertData};
+export {
+  LoginPage,
+  HomePage,
+  InsertDataPage,
+  AccettazioneLaccatoPage,
+  RistampaETKPage,
+};

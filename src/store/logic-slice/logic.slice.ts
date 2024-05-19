@@ -6,16 +6,16 @@ import {
   SupplierResponseType,
 } from '../../settings/controllers/types';
 
-type InsterDataType = {
+export type InsterDataType = {
   supplier: string | null;
-  date: string | null;
+  date: string;
   isInBaia: boolean;
 };
 
 export type LogicSlice = {
   userInfo: CompanyLoginResponseType | null;
   insertData: InsterDataType;
-  supplier: SupplierResponseType | null;
+  selectedSupplier: SupplierResponseType | null;
   selectedProgram: CompanyProgrammiType | null;
 
   readBarCodeOnceALPage: boolean;
@@ -39,11 +39,11 @@ const initialState: LogicSlice = {
   userInfo: null,
   insertData: {
     supplier: null,
-    date: null,
+    date: '',
     isInBaia: false,
   },
   selectedProgram: null,
-  supplier: null,
+  selectedSupplier: null,
   readBarCodeOnceALPage: false,
   triggerReadBarcodeALPage: 0,
   errorReadingBarCode: false,
@@ -69,8 +69,11 @@ export const LogicSlice = createSlice({
     updateInsertData: (state, actions: PayloadAction<InsterDataType>) => {
       state.insertData = actions.payload;
     },
-    updateSupplier: (state, action: PayloadAction<SupplierResponseType>) => {
-      state.supplier = action.payload;
+    updateSupplier: (
+      state,
+      action: PayloadAction<SupplierResponseType | null>,
+    ) => {
+      state.selectedSupplier = action.payload;
     },
     updateSelectProgram: (
       state,
@@ -120,7 +123,7 @@ export const selectInsterDataInfo = (state: RootState): InsterDataType =>
   state.LogicReducer.insertData;
 
 export const selectSupplier = (state: RootState): SupplierResponseType | null =>
-  state.LogicReducer.supplier;
+  state.LogicReducer.selectedSupplier;
 
 export const selectProgram = (state: RootState): CompanyProgrammiType | null =>
   state.LogicReducer.selectedProgram;

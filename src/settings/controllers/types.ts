@@ -196,7 +196,7 @@ type VerifySupplierParamRequest = {
 };
 
 type VerifySupplierResponseType = {
-  date: {
+  data: {
     isErrore: boolean;
     noTranscodifica: boolean;
     messaggio: string;

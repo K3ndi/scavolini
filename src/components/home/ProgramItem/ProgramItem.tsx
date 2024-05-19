@@ -1,6 +1,9 @@
-import {List} from 'antd';
+import {Flex, List} from 'antd';
 import {CompanyProgrammiType} from '../../../settings/controllers/types';
 import {getURL} from '../../../settings/api-endpoint-service';
+import noImagePng from '../../../assets/images/noImage.png';
+import styles from './programitem.module.css';
+
 interface ProgramItemProps {
   item: CompanyProgrammiType;
   onProgramSelect: (item: CompanyProgrammiType) => () => void;
@@ -10,13 +13,26 @@ export const ProgramItem: React.FC<ProgramItemProps> = ({
   onProgramSelect,
 }) => {
   const imagePath = getURL() + item.immagine;
-  console.log('Test', imagePath);
+
   return (
     <List.Item
-      onClick={onProgramSelect(item)}
-      style={{alignItems: 'center', justifyContent: 'flex-start', gap: '20px'}}>
-      <img style={{width: '80px'}} src={imagePath} alt="" />
-      <p>{item?.nomeBreve ? item.nomeBreve : '-'}</p>
+      title="testt"
+      className={styles.listItem}
+      onClick={onProgramSelect(item)}>
+      <Flex>
+        <img
+          className={styles.imageStyle}
+          src={imagePath}
+          alt=""
+          onError={({currentTarget}) => {
+            currentTarget.onerror = null;
+            currentTarget.src = noImagePng;
+          }}
+        />
+      </Flex>
+      <Flex>
+        <p>{item?.nomeBreve ? item.nomeBreve : '-'}</p>
+      </Flex>
     </List.Item>
   );
 };

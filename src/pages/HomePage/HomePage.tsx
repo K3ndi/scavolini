@@ -42,7 +42,7 @@ export const HomePage = () => {
       {userInfo?.data?.programmi ? (
         <List
           size="large"
-          style={{padding: '0 10px'}}
+          style={{padding: '10px 10px'}}
           dataSource={userInfo.data.programmi}
           renderItem={renderItem}
         />

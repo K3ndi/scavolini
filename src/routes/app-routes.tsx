@@ -1,5 +1,11 @@
 import {createBrowserRouter} from 'react-router-dom';
-import {HomePage, InsertData, LoginPage} from '../pages';
+import {
+  AccettazioneLaccatoPage,
+  HomePage,
+  InsertDataPage,
+  LoginPage,
+  RistampaETKPage,
+} from '../pages';
 import {ErrorPage, Layout} from '../components';
 
 const router = createBrowserRouter([
@@ -18,7 +24,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/insertdata',
-        element: <InsertData />,
+        element: <InsertDataPage />,
+      },
+      {
+        path: '/accetazionelaccato',
+        element: <AccettazioneLaccatoPage />,
+      },
+      {
+        path: '/ristampaetk',
+        element: <RistampaETKPage />,
       },
     ],
   },

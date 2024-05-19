@@ -7,6 +7,13 @@ import Store from '../src/store/store';
 import {ConfigProvider} from 'antd';
 import AppWrapper from './AppWrapper';
 
+import locale from 'antd/locale/it_IT';
+
+import 'dayjs/locale/it-ch';
+import dayjs from 'dayjs';
+
+dayjs.locale('it-ch');
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
@@ -14,6 +21,7 @@ root.render(
   <React.StrictMode>
     <StoreProvider store={Store}>
       <ConfigProvider
+        locale={locale}
         theme={{
           token: {
             // Seed Token

@@ -4,12 +4,7 @@ import {
   UserInfoData,
   UserInfoModal,
 } from '../../components';
-import {
-  IconInfoCircle,
-  IconUser,
-  IconUserCode,
-  IconX,
-} from '@tabler/icons-react';
+import {IconInfoCircle, IconUser, IconUserCode} from '@tabler/icons-react';
 import styles from './login.module.css';
 import logoApp from '../../assets/images/Scavolini.jpg';
 import {Flex, Input, message} from 'antd';
@@ -29,86 +24,86 @@ import {
 } from '../../settings/app-service/app-storage-service';
 import {AziendaLoginEndPoint} from '../../settings/api-endpoint-service';
 
-const DUMMY_DATA = {
-  data: {
-    programmi: [
-      {
-        codice: 'CTL-ACC-01     ',
-        immagine: '/Immagini/Programmi/accettazionemerce.png',
-        nomeBreve: 'Accett. Merce Lacc.',
-        isMenuSap: false,
-        id: 'AccMerce',
-      },
-      {
-        codice: 'UGU-PRE',
-        immagine: '/Immagini/Programmi/uguaglianza2d.png',
-        nomeBreve: 'Uguaglianza 2D',
-        isMenuSap: false,
-        id: 'Uguaglianza2D',
-      },
-      {
-        codice: 'CTL-SOR-01',
-        immagine: '/Immagini/Programmi/uguaglianza2d.png',
-        nomeBreve: 'Uguaglianza Srt',
-        isMenuSap: false,
-        id: 'UguaglianzaSorter',
-      },
-      {
-        codice: 'STM-ETK-02',
-        immagine: '/Immagini/Programmi/stampa.png',
-        nomeBreve: 'Genera Etichetta',
-        isMenuSap: false,
-        id: 'StampaEtichetteSped',
-      },
-      {
-        codice: 'MAN',
-        immagine: '/Immagini/Programmi/mancanti.png',
-        nomeBreve: 'Segn. Mancanti',
-        isMenuSap: false,
-        id: 'Mancanti',
-      },
-      {
-        codice: 'CTL-SMT-01',
-        immagine: '/Immagini/Programmi/prelievoante.png',
-        nomeBreve: 'Smistamento',
-        isMenuSap: false,
-        id: 'SmistLaccato',
-      },
-      {
-        codice: 'STM-ETK-05',
-        immagine: '/Immagini/Programmi/stampa.png',
-        nomeBreve: 'Stampa Etk Carrello',
-        isMenuSap: false,
-        id: 'StampaEtkCarrello',
-      },
-    ],
-    matricola: 920,
-    nomeCognome: 'ROBERTO GIANGOLINI',
-    isDimesso: false,
-    codiceReparto: '45',
-    nomeReparto: 'Magazzino e foratura ante',
-    divisione: '100',
-    azienda: '10',
-    isScavolini: true,
-    isErnestomeda: false,
-    isScavoliniBagni: false,
-    isLaccatoScavolini: false,
-    isRepartoImballoAnte: false,
-    isLaccatoErnestomeda: false,
-    isFuoriMisuraErnestomeda: false,
-    isScSpedizioniIta: false,
-    isScSpedizioniEst: false,
-    isRepartoTopMensole: false,
-    isSpedizioniScavolini: false,
-    isScCapoArea: false,
-    isEldomScavolini: false,
-    isMagRiordinatoreAnteScavolini: true,
-    isMagazzinoErnestomeda: false,
-    isFmLotto1Ernestomeda: false,
-    getInfoBase: 'ROBERTO GIANGOLINI (Magazzino e foratura ante 45)',
-  },
-  total: 1,
-};
+// const DUMMY_DATA = {
+//   data: {
+//     programmi: [
+//       {
+//         codice: 'CTL-ACC-01     ',
+//         immagine: '/Immagini/Programmi/accettazionemerce.png',
+//         nomeBreve: 'Accett. Merce Lacc.',
+//         isMenuSap: false,
+//         id: 'AccMerce',
+//       },
+//       {
+//         codice: 'UGU-PRE',
+//         immagine: '/Immagini/Programmi/uguaglianza2d.png',
+//         nomeBreve: 'Uguaglianza 2D',
+//         isMenuSap: false,
+//         id: 'Uguaglianza2D',
+//       },
+//       {
+//         codice: 'CTL-SOR-01',
+//         immagine: '/Immagini/Programmi/uguaglianza2d.png',
+//         nomeBreve: 'Uguaglianza Srt',
+//         isMenuSap: false,
+//         id: 'UguaglianzaSorter',
+//       },
+//       {
+//         codice: 'STM-ETK-02',
+//         immagine: '/Immagini/Programmi/stampa.png',
+//         nomeBreve: 'Genera Etichetta',
+//         isMenuSap: false,
+//         id: 'StampaEtichetteSped',
+//       },
+//       {
+//         codice: 'MAN',
+//         immagine: '/Immagini/Programmi/mancanti.png',
+//         nomeBreve: 'Segn. Mancanti',
+//         isMenuSap: false,
+//         id: 'Mancanti',
+//       },
+//       {
+//         codice: 'CTL-SMT-01',
+//         immagine: '/Immagini/Programmi/prelievoante.png',
+//         nomeBreve: 'Smistamento',
+//         isMenuSap: false,
+//         id: 'SmistLaccato',
+//       },
+//       {
+//         codice: 'STM-ETK-05',
+//         immagine: '/Immagini/Programmi/stampa.png',
+//         nomeBreve: 'Stampa Etk Carrello',
+//         isMenuSap: false,
+//         id: 'StampaEtkCarrello',
+//       },
+//     ],
+//     matricola: 920,
+//     nomeCognome: 'ROBERTO GIANGOLINI',
+//     isDimesso: false,
+//     codiceReparto: '45',
+//     nomeReparto: 'Magazzino e foratura ante',
+//     divisione: '100',
+//     azienda: '10',
+//     isScavolini: true,
+//     isErnestomeda: false,
+//     isScavoliniBagni: false,
+//     isLaccatoScavolini: false,
+//     isRepartoImballoAnte: false,
+//     isLaccatoErnestomeda: false,
+//     isFuoriMisuraErnestomeda: false,
+//     isScSpedizioniIta: false,
+//     isScSpedizioniEst: false,
+//     isRepartoTopMensole: false,
+//     isSpedizioniScavolini: false,
+//     isScCapoArea: false,
+//     isEldomScavolini: false,
+//     isMagRiordinatoreAnteScavolini: true,
+//     isMagazzinoErnestomeda: false,
+//     isFmLotto1Ernestomeda: false,
+//     getInfoBase: 'ROBERTO GIANGOLINI (Magazzino e foratura ante 45)',
+//   },
+//   total: 1,
+// };
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
@@ -142,29 +137,23 @@ const LoginPage = () => {
   };
 
   const fetchAziendaData = async (companyCode: '10' | '30' | null) => {
-    try {
-      setLoading(true);
+    setLoading(true);
 
-      fetch(
-        `${AziendaLoginEndPoint}?matricola=${matricolaInput}&azienda=${companyCode}`,
-      )
-        .then(res => res.json())
-        .then(data => {
-          dispatch(updateUserInfo(data as CompanyLoginResponseType));
-          setUserInfo(data as CompanyLoginResponseType);
-          setLoading(false);
-          toggleSelectCompanyModal();
-        })
-        .catch(error => {
-          messageApi.info('Errore durante il recupero dei dati');
-          setLoading(false);
-          toggleSelectCompanyModal();
-        });
-    } catch (error) {
-      messageApi.info('Errore durante il recupero dei dati');
-      setLoading(false);
-      toggleSelectCompanyModal();
-    }
+    fetch(
+      `${AziendaLoginEndPoint}?matricola=${matricolaInput}&azienda=${companyCode}`,
+    )
+      .then(res => res.json())
+      .then(data => {
+        dispatch(updateUserInfo(data as CompanyLoginResponseType));
+        setUserInfo(data as CompanyLoginResponseType);
+        setLoading(false);
+        toggleSelectCompanyModal();
+      })
+      .catch(error => {
+        messageApi.info('Errore durante il recupero dei dati');
+        setLoading(false);
+        toggleSelectCompanyModal();
+      });
   };
 
   const selectCompany = (companyCode: '10' | '30' | null) => {
@@ -186,7 +175,20 @@ const LoginPage = () => {
   };
 
   const navigateHome = () => {
-    navigate('programmi');
+    navigate('/programmi');
+  };
+
+  const handleKeyDown = (event: any) => {
+    // Check if the "Enter" key is pressed
+    if (event.key === 'Enter') {
+      const scannedBarcode = event.target.value.trim();
+      if (scannedBarcode) {
+        setMatricolaInput(scannedBarcode);
+        // You can perform further processing with the scanned barcode value here
+      }
+      // Clear the input field after processing
+      event.target.value = '';
+    }
   };
 
   return (
@@ -197,7 +199,7 @@ const LoginPage = () => {
         rightView={
           <IconInfoCircle stroke={2} color="#fff" onClick={toggleUserInfo} />
         }
-        leftView={<IconX stroke={2} color="#fff" />}
+        leftView={<p></p>}
       />
       <section className={styles.container}>
         <img src={logoApp} alt="app logo" />
@@ -209,6 +211,13 @@ const LoginPage = () => {
           placeholder="matricola..."
           value={matricolaInput}
           onChange={onInputChange}
+        />
+
+        <input
+          type="text"
+          placeholder="Scan barcode..."
+          style={{zIndex: -999, position: 'absolute', visibility: 'hidden'}}
+          onKeyDown={handleKeyDown}
         />
 
         <Flex gap={30}>

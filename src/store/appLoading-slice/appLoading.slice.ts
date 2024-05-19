@@ -1,7 +1,10 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {RootState} from '../store';
-import {updateUserInfo} from '../logic-slice/logic.slice';
-import {getUserInfo} from '../../settings/app-service/app-storage-service';
+import {updateInsertData, updateUserInfo} from '../logic-slice/logic.slice';
+import {
+  getInsertDataInfo,
+  getUserInfo,
+} from '../../settings/app-service/app-storage-service';
 
 export type AppLoadingState = {
   isAppLoading: boolean;
@@ -18,8 +21,19 @@ export const appLoading = createAsyncThunk(
     try {
       //we set the user info data
       const userInfo = getUserInfo();
+      if (userInfo) thunkApi.dispatch(updateUserInfo(userInfo));
 
-      thunkApi.dispatch(updateUserInfo(userInfo));
+      const insertData = getInsertDataInfo();
+
+      if (insertData) {
+        thunkApi.dispatch(
+          updateInsertData({
+            supplier: insertData.supplier,
+            isInBaia: insertData.isInBaia,
+            date: insertData.date,
+          }),
+        );
+      }
     } catch (error) {
       return thunkApi.rejectWithValue(error);
     }

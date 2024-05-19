@@ -1,0 +1,22 @@
+.contentContainer {
+  align-items: center;
+}
+
+.labelStyle {
+  flex: 0.4;
+}
+
+.inputStyle {
+  border: 1px solid #ccc;
+  padding: 7px;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  flex: 1;
+}
+
+.infoLabel {
+  word-wrap: break-word;
+  text-align: center;
+}
