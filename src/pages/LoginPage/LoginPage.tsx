@@ -141,6 +141,13 @@ const LoginPage = () => {
 
     fetch(
       `${AziendaLoginEndPoint}?matricola=${matricolaInput}&azienda=${companyCode}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: '*/*',
+          'Content-Type': 'application/json',
+        },
+      },
     )
       .then(res => res.json())
       .then(data => {
@@ -178,19 +185,6 @@ const LoginPage = () => {
     navigate('/programmi');
   };
 
-  const handleKeyDown = (event: any) => {
-    // Check if the "Enter" key is pressed
-    if (event.key === 'Enter') {
-      const scannedBarcode = event.target.value.trim();
-      if (scannedBarcode) {
-        setMatricolaInput(scannedBarcode);
-        // You can perform further processing with the scanned barcode value here
-      }
-      // Clear the input field after processing
-      event.target.value = '';
-    }
-  };
-
   return (
     <>
       {contextHolder}
@@ -211,13 +205,6 @@ const LoginPage = () => {
           placeholder="matricola..."
           value={matricolaInput}
           onChange={onInputChange}
-        />
-
-        <input
-          type="text"
-          placeholder="Scan barcode..."
-          style={{zIndex: -999, position: 'absolute', visibility: 'hidden'}}
-          onKeyDown={handleKeyDown}
         />
 
         <Flex gap={30}>

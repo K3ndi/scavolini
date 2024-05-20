@@ -237,8 +237,6 @@ export const InsertData = () => {
       : dayjs(),
   );
 
-  console.log('dskfksfs', insertDataInfo.date, selectedDate);
-
   /** baia state */
   const [checked, setChecked] = useState<boolean>(insertDataInfo.isInBaia);
 

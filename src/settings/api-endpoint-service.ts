@@ -1,5 +1,6 @@
-export const getURL = () => 'http://10.10.199.137';
-export const getApiEndPoint = (): string => 'http://10.10.199.137/api/';
+export const getURL = () => 'http://fabbapisvil.appsprod.scavolini.net';
+export const getApiEndPoint = (): string =>
+  'http://fabbapisvil.appsprod.scavolini.net/api/';
 
 /**
  * Used when a function needs to return the query results as an array of objects with type T
