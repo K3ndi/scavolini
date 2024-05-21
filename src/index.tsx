@@ -24,7 +24,6 @@ root.render(
         locale={locale}
         theme={{
           token: {
-            // Seed Token
             colorPrimary: '#c00518',
           },
         }}>
