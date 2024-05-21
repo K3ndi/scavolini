@@ -360,7 +360,7 @@ export const AccettazioneLaccatoPage = () => {
   };
 
   return (
-    <>
+    <Flex>
       {contextHolder}
       <Header
         title="Accettazione Laccato"
@@ -490,7 +490,7 @@ export const AccettazioneLaccatoPage = () => {
           </Flex>
         ) : null}
       </Flex>
-    </>
+    </Flex>
   );
 };
 export default AccettazioneLaccatoPage;

@@ -1,4 +1,5 @@
 import {
+  BarcodeReaderComponent,
   ChooseCompanyModal,
   Header,
   UserInfoData,
@@ -196,6 +197,8 @@ const LoginPage = () => {
         leftView={<p></p>}
       />
       <section className={styles.container}>
+        <BarcodeReaderComponent />
+
         <img src={logoApp} alt="app logo" />
 
         <h2>Matricola</h2>
