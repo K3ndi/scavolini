@@ -120,6 +120,10 @@ const LoginPage = () => {
     userInfo?.data?.matricola ? String(userInfo.data.matricola) : '',
   );
 
+  const updateMatricolaByDataMatrix = (text: string) => {
+    setMatricolaInput(text);
+  };
+
   const [loading, setLoading] = useState<boolean>(false);
 
   /**select company state modal */
@@ -197,7 +201,9 @@ const LoginPage = () => {
         leftView={<p></p>}
       />
       <section className={styles.container}>
-        <BarcodeReaderComponent />
+        <BarcodeReaderComponent
+          updateMatricolaByDataMatrix={updateMatricolaByDataMatrix}
+        />
 
         <img src={logoApp} alt="app logo" />
 
